@@ -1,0 +1,15 @@
+apiVersion: v1
+metadata:
+  name: Testcafe+Cucumber integration
+files:
+  - ./features/
+  - ./tests/
+  # Cucumber Specifics
+  - ./cucumber.js
+  - ./src/sauce-testreporter.js
+suites:
+  - name: "saucectl"
+    match: "tests/.*.(spec|test).js"
+image:
+  base: saucelabs/stt-testcafe-cucumber-node
+  version: latest
