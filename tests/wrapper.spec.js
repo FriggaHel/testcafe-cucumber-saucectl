@@ -9,7 +9,6 @@ test("Pre-Cucumber tests", async (t) => {
 
 test("Cucumber Tests", async (t) => {
     await testControllerHolder.capture(t);
-    console.log("Free'd !");
 });
 
 test("Post-Cucumber tests", async (t) => {

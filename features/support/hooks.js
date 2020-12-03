@@ -12,6 +12,7 @@ let cafeRunner = null;
 setDefaultTimeout(30000);
 
 const runTest = async (browsers) => {
+    console.log("Starting TestCafe !");
     cafeRunner = await createTestCafe('localhost', 1337, 1338)
     const runner = cafeRunner.createRunner();
     await runner
@@ -25,9 +26,8 @@ const runTest = async (browsers) => {
         })
         .run();
     return new Promise(async () => {
-        console.log("Closing TC");
+        console.log("Closing TestCafe !");
         await cafeRunner.close();
-        console.log("Closed TC !");
     });
 }
 
@@ -46,6 +46,6 @@ Before(async () => {
 /* Shutdown TC */
 AfterAll(async () => {
     await testControllerHolder.free();
-    console.log("After All");
+    //console.log("After All");
     // cafeRunner.close();
 });
