@@ -1,4 +1,4 @@
-FROM saucelabs/stt-testcafe-node:latest
+FROM saucelabs/stt-testcafe-node:v0.1.13
 
 RUN npm i @cucumber/cucumber cucumber-junit xml
 ADD src/console-wrapper.js ./src/

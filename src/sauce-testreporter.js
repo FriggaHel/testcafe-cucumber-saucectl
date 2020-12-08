@@ -222,7 +222,7 @@ exports.sauceReporter = async (browserName, assets, results) => {
   await Promise.all([
     api.uploadJobAssets(
       sessionId,
-      uploadAssets
+      { files: uploadAssets },
     ).then(
       (resp) => {
         if (resp.errors) {
