@@ -8,14 +8,14 @@ const {HOME_DIR} = require('./constants')
 const fileExists = promisify(fs.exists)
 const readFile = promisify(fs.readFile)
 
-const TESTS_FOLDER = process.env.TESTS_FOLDERS || 'features';
+const STEP_DEFINITIONS_FOLDER = process.env.STEP_DEFINITIONS_FOLDER || 'features';
 
 // the default test matching behavior for versions <= v0.1.4
 const DefaultRunCfg = {
   projectPath: `${HOME_DIR}`,
   match: [
-    `${HOME_DIR}/${TESTS_FOLDER}/(*.).feature`,
-    `${HOME_DIR}/${TESTS_FOLDER}/**/(*.).feature`
+    `${HOME_DIR}/(*.).feature`,
+    `${HOME_DIR}/**/(*.).feature`
   ]
 }
 
@@ -59,7 +59,7 @@ function resolveTestMatches(runCfg) {
   const runCfgPath = path.join(HOME_DIR, 'run.yaml')
   const runCfg = await loadRunConfig(runCfgPath)
   const testMatch = [
-    `${HOME_DIR}/${TESTS_FOLDER}/**/*.js`,
+    `${HOME_DIR}/${STEP_DEFINITIONS_FOLDER}/**/*.js`,
     ...resolveTestMatches(runCfg)
   ];
 

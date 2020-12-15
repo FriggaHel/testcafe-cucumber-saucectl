@@ -1,6 +1,8 @@
 apiVersion: v1
 metadata:
   name: Testcafe+Cucumber integration
+env:
+  STEP_DEFINITIONS_FOLDER: features/step_definitions
 files:
   - ./features/
 suites:

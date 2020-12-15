@@ -46,7 +46,7 @@ This scripts is derived from [stt-testcafe-node](https://github.com/saucelabs/sa
 - `features/SauceDemo.feature` / `features/SauceDemoLogins.feature` contains the actual described behavior.
 - `features/step_definitions/SauceDemo.js` contains Step definitions.
 
-`features` folder can be overriden by setting the `TESTS_FOLDER` in .sauce/config.yml`.
+`features/step_definitions` folder can be overriden by setting the `STEP_DEFINITIONS_FOLDER` environment variable in .sauce/config.yml`:
 
 **TestCafe elements**:
 - `features/step_definitions/pageObjects/*.js` contain pageObject used by TestCafe.
