@@ -1,52 +1,41 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-const LoginPage = require('../step_definitions/pageObjects/LoginPage');
-const SwagListPage = require('../step_definitions/pageObjects/SwagOverviewPage');
-const testControllerHolder = require('../support/testControllerHolder');
+const { Given, When, Then } = require('cucumber');
+const LoginPage = require('./pageObjects/LoginPage');
+const SwagListPage = require('./pageObjects/SwagOverviewPage');
 
-Given('User wants to view the page of SauceDemo Login', async function () {
-    const t = await testControllerHolder.get();
+Given('User wants to view the page of SauceDemo Login', async function (t) {
     await t.navigateTo(LoginPage.url);
 });
 
-Given('User types {string} in username and {string} in password', async function (username, password) {
-    const t = await testControllerHolder.get();
-    await t.selectText(LoginPage.username.with({boundTestRun: t})).pressKey('delete');
-    await t.typeText(LoginPage.username.with({boundTestRun: t}), username);
+Given('User types {string} in username and {string} in password', async function (t, [username, password]) {
+    await t.selectText(LoginPage.username).pressKey('delete');
+    await t.typeText(LoginPage.username, username);
 
     await t.selectText(LoginPage.password).pressKey('delete');
-    await t.typeText(LoginPage.password.with({boundTestRun: t}), password);
+    await t.typeText(LoginPage.password, password);
 });
 
-Given('User types only {string} in {string}', async function (value, field) {
-    const t = await testControllerHolder.get();
-
-    await t.selectText(LoginPage.username.with({boundTestRun: t})).pressKey('delete');
-    await t.selectText(LoginPage.password.with({boundTestRun: t})).pressKey('delete');
+Given('User types only {string} in {string}', async function (t, [value, field]) {
+    await t.selectText(LoginPage.username).pressKey('delete');
+    await t.selectText(LoginPage.password).pressKey('delete');
 
     if (field === 'password') {
-        await t.typeText(LoginPage.password.with({boundTestRun: t}), value);
+        await t.typeText(LoginPage.password, value);
     } else if (field === 'username') {
-        await t.typeText(LoginPage.username.with({boundTestRun: t}), value);
+        await t.typeText(LoginPage.username, value);
     }
 
-    await t.click(LoginPage.loginButton.with({boundTestRun: t}));
+    await t.click(LoginPage.loginButton);
 });
 
-When('he clicks the Login button', async function () {
-    const t = await testControllerHolder.get();
-
-    await t.click(LoginPage.loginButton.with({boundTestRun: t}));
+When('he clicks the Login button', async function (t) {
+    await t.click(LoginPage.loginButton);
 });
 
-Then('he should see the {string} message', async function (expectedMessage) {
-    const t = await testControllerHolder.get();
-
-    await t.expect(LoginPage.errorMessage.with({boundTestRun: t}).innerText).eql(expectedMessage);
+Then('he should see the {string} message', async function (t, [expectedMessage]) {
+    await t.expect(LoginPage.errorMessage.innerText).eql(expectedMessage);
 });
 
-Then('he should see the product list', async function () {
-    const t = await testControllerHolder.get();
-
-    await t.expect(SwagListPage.screen.with({boundTestRun: t}).exists).ok();
+Then('he should see the product list', async function (t) {
+    await t.expect(SwagListPage.screen.exists).ok();
     await t.takeScreenshot();
 });
