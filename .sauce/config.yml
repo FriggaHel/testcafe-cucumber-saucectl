@@ -1,14 +1,17 @@
 apiVersion: v1
 metadata:
   name: Testcafe+Cucumber integration
+env:
+  STEP_DEFINITIONS_FOLDER: features/step_definitions
 files:
   - ./features/
-  - ./tests/
-  # Cucumber Specifics
-  - ./cucumber.js
 suites:
-  - name: "saucectl"
-    match: "tests/.*.(spec|test).js"
+  - name: "SauceDemo"
+    match: features/SauceDemo.feature
+  - name: "SauceDemoLogins"
+    match: features/SauceDemoLogins.feature
+  - name: "All Features"
+    match: features/(.*)\.feature
 image:
   base: stt-testcafe-cucumber-node
   version: latest
