@@ -29,24 +29,30 @@ This scripts is derived from [stt-testcafe-node](https://github.com/saucelabs/sa
 
 ```
 .
-├─ features
-│  ├── SauceDemo.feature
-│  ├── SauceDemoLogins.feature
-│  └── step_definitions
-│      ├── SauceDemo.js
-│      └── pageObjects
-│          ├── BasePage.js
-│          ├── LoginPage.js
-│          └── SwagOverviewPage.js
-└─ cucumber.js
+├─ .sauce
+│  └── config.yml
+└─ features
+   ├── SauceDemo.feature
+   ├── SauceDemoLogins.feature
+   └── step_definitions
+       ├── SauceDemo.js
+       └── pageObjects
+           ├── BasePage.js
+           ├── LoginPage.js
+           └── SwagOverviewPage.js
 ```
 
 **Cucumber-js elements**:
 - `features/SauceDemo.feature` / `features/SauceDemoLogins.feature` contains the actual described behavior.
 - `features/step_definitions/SauceDemo.js` contains Step definitions.
 
-**TestCafe elemts**:
+`features` folder can be overriden by setting the `TESTS_FOLDER` in .sauce/config.yml`.
+
+**TestCafe elements**:
 - `features/step_definitions/pageObjects/*.js` contain pageObject used by TestCafe.
+
+**SauceCtl elemnts**:
+- `.sauce/config.yml` contains configuration used by SauceCTL.
 
 ### Workflow
 
